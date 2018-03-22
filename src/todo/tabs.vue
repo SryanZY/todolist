@@ -1,7 +1,7 @@
 <!-- tab切换，过滤条件部分 -->
 <template>
   <div class="helper">
-      <spam class="left">{{unFinishedTodoLength}} items left</spam>
+      <span class="left">{{unFinishedTodoLength}} items left</span>
       <span class="tabs">
           <span 
             v-for="state in states" 
@@ -61,9 +61,9 @@ export default {
         .left
             text-align left
         .tabs
-            width 200px
             display flex
             justify-content space-around
+            width 200px
             * 
                 display inline-block
                 padding 0 10px
