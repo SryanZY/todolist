@@ -6,7 +6,7 @@
       class="toggle"
       v-model="todo.completed"
     >
-    <label>{{todo.content}}</label>
+    <label>{{todo.content | capitalize }}</label>
     <button class="destory" @click="deleteTodo"></button>
   </div>
 </template>
@@ -22,6 +22,13 @@ export default {
   data () {
     return {
     };
+  },
+  filters: {
+    capitalize(value) {
+      if (!value) return '';
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
   },
   methods: {
     deleteTodo () {
