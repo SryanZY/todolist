@@ -117,10 +117,7 @@ if (isDev) {
         new ExtractPlugin('css/styles.[contenthash:8].css'),
         new UglifyJSPlugin (),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'runtime'
+            names: ['vendor', 'runtime']
         })
     )
 }
