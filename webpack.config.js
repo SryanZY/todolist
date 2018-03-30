@@ -113,7 +113,7 @@ if (isDev) {
     )
     config.plugins.push(
         new CleanWebpackPlugin(['dist']),
-        new ExtractPlugin('css/styles.[contentHash:8].css'),
+        new ExtractPlugin('css/styles.[contenthash:8].css'),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
         }),
