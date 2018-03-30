@@ -1,6 +1,8 @@
 {
     "presets": [
-        "env"
+        ["env", {
+            "modules": false
+        }]
     ],
     "plugins": [
         /*转换vue中的jsx代码*/
