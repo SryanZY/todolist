@@ -9,11 +9,6 @@ const merge = require('webpack-merge')
 
 let config
 const defaultPlugins = [
-    new webpack.DefinePlugin({
-        'process.env': {
-            NODE_ENV: isDev ? '"development"' : '"production"'
-        }
-    }),
     new HtmlWebpackPlugin()
 ]
 const devServer = {
@@ -73,7 +68,7 @@ if (isDev) {
             app: path.join(__dirname, '../client/index.js')
         },
         output: {
-            filename: '[name].[chunkhash:8].js'
+            filename: 'js/[name].[chunkhash:8].js'
         },
         module: {
             rules: [

@@ -1,4 +1,4 @@
-// webpack配置公用代碼 */
+/* webpack配置公用代碼 */
 const path = require('path')
 // const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
