@@ -2,9 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractPlugin = require('extract-text-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-
 const isDev = process.env.NODE_ENV === 'development';
 
 const config =  {
@@ -113,9 +110,7 @@ if (isDev) {
         }
     )
     config.plugins.push(
-        new CleanWebpackPlugin(['dist']),
         new ExtractPlugin('css/styles.[contenthash:8].css'),
-        new UglifyJSPlugin (),
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor', 'runtime']
         })
