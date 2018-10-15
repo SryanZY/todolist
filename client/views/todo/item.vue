@@ -13,28 +13,28 @@
 
 <script>
 export default {
-  props: {
-    todo: {
-      type: Object,
-      required: true
+    props: {
+        todo: {
+            type: Object,
+            required: true
+        }
+    },
+    data () {
+        return {
+        }
+    },
+    filters: {
+        capitalize (value) {
+            if (!value) return ''
+            value = value.toString()
+            return value.charAt(0).toUpperCase() + value.slice(1)
+        }
+    },
+    methods: {
+        deleteTodo () {
+            this.$emit('del', this.todo.id)
+        }
     }
-  },
-  data () {
-    return {
-    };
-  },
-  filters: {
-    capitalize(value) {
-      if (!value) return '';
-      value = value.toString();
-      return value.charAt(0).toUpperCase() + value.slice(1);
-    }
-  },
-  methods: {
-    deleteTodo () {
-      this.$emit('del', this.todo.id);
-    }
-  }
 }
 </script>
 <style lang="stylus" scoped>
