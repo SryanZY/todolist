@@ -22,18 +22,18 @@ export default {
 </script>
 <style lang="stylus" scoped>
     #app
-      position absolute
-      left 0
-      top 0
-      width 100%
-      height 100%
-      .cover
-        position fixed
+        position absolute
         left 0
         top 0
-        right 0
-        bottom 0
-        background-color rgba(153, 153, 153, .9)
-        z-index -1
-    
+        width 100%
+        height 100%
+        .cover
+            position fixed
+            left 0
+            top 0
+            right 0
+            bottom 0
+            background-color rgba(153, 153, 153, .9)
+            z-index -1
+
 </style>

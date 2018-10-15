@@ -1,11 +1,11 @@
 <!--  -->
 <template>
-  <header :class="$style.mainHeader">
+  <header class="main-header">
     <h1>SryanZY todo</h1>
   </header>
 </template>
 
-<style lang="stylus" module>
+<style lang="stylus" scoped>
   .main-header
     text-align center
     h1

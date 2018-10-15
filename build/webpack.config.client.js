@@ -2,7 +2,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 const baseConfig = require('./webpack.config.base')
 const merge = require('webpack-merge')
@@ -45,7 +45,12 @@ if (isDev) {
                     test: /\.styl$/,
                     use: [
                         'vue-style-loader',
-                        'css-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 2
+                            }
+                        },
                         {
                             loader: 'postcss-loader',
                             options: {
@@ -59,15 +64,13 @@ if (isDev) {
         },
         devServer,
         plugins: defaultPlugins.concat([
-            new webpack.HotModuleReplacementPlugin(),
-            new webpack.NoEmitOnErrorsPlugin()
+            new webpack.HotModuleReplacementPlugin()
         ])
     })
 } else {
     config = merge(baseConfig, {
         entry: {
-            app: path.join(__dirname, '../client/index.js'),
-            vendor: ['vue']
+            app: path.join(__dirname, '../client/index.js')
         },
         output: {
             filename: '[name].[chunkhash:8].js'
@@ -76,28 +79,22 @@ if (isDev) {
             rules: [
                 {
                     test: /\.styl/,
-                    use: ExtractPlugin.extract({
-                        fallback: 'vue-style-loader',
-                        use: [
-                            'css-loader',
-                            {
-                                loader: 'postcss-loader',
-                                options: {
-                                    sourceMap: true
-                                }
-                            },
-                            'stylus-loader'
-                        ]
-                    })
+                    use: ['vue-style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'stylus-loader']
                 }
             ]
         },
         plugins: defaultPlugins.concat([
-            new ExtractPlugin('css/styles.[contenthash:8].css'),
-            new webpack.optimize.CommonsChunkPlugin({
-                names: ['vendor', 'runtime']
+            new MiniCssExtractPlugin({
+                filename: 'css/styles.[name].css',
+                chunkFilename: 'css/styles.[contenthash:8].css'
             })
-        ])
+        ]),
+        optimization: {
+            splitChunks: {
+                chunks: 'all'
+            },
+            runtimeChunk: true
+        }
     })
 }
 

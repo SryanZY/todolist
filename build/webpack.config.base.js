@@ -1,10 +1,11 @@
 // webpack配置公用代碼 */
 const path = require('path')
-const vueLoaderOptions = require('./vue-loader.config')
+// const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 
 const config = {
+    mode: process.env.NODE_ENV || 'production', // development || production
     target: 'web',
     entry: path.join(__dirname, '../client/index.js'),
     output: {
@@ -22,7 +23,14 @@ const config = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
-                options: vueLoaderOptions(isDev)
+                // vue-loader14中的配置，15中已修改
+                options: {
+                    preserveWhitepace: true,
+                    cssModules: {
+                        localIdentName: isDev ? '[path]-[name]-[hash:base64:5]' : '[hash:base64:5]',
+                        camelCase: true
+                    }
+                }
             },
             {
                 test: /\.jsx$/,
@@ -39,7 +47,7 @@ const config = {
                     loader: 'url-loader',
                     options: {
                         limit: 1024,
-                        name: 'resources/[path][name].[hash:8].[ext]'
+                        name: 'resources/[name].[hash:8].[ext]'
                     }
                 }]
             }
