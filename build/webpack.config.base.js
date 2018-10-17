@@ -30,6 +30,10 @@ const config = {
                         localIdentName: isDev ? '[path]-[name]-[hash:base64:5]' : '[hash:base64:5]',
                         camelCase: true
                     }
+                    /* loaders: {
+                        css: ['vue-style-loader', 'css-loader', 'postcss-loader', 'px2rem-loader'],
+                        stylus: ['vue-style-loader', 'css-loader', 'postcss-loader', 'px2rem-loader', 'stylus-loader']
+                    } */
                 }
             },
             {

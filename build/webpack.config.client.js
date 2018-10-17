@@ -52,6 +52,12 @@ if (isDev) {
                                 sourceMap: true
                             }
                         },
+                        {
+                            loader: 'px2rem-loader',
+                            options: {
+                                remUnit: 75
+                            }
+                        },
                         'stylus-loader'
                     ]
                 }

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './app.vue'
+import 'lib-flexible/flexible'
 import './assets/styles/global.styl'
 
 const root = document.createElement('div')
