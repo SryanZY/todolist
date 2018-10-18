@@ -5,7 +5,7 @@ const component = {
         `
             <div>
                 <input type="text" v-model="text" />
-                <p v-show="active">See me if is active</p>
+                <p v-show="active" @click="handleChange">See me if is active</p>
             </div>
         `,
     props: {
@@ -18,6 +18,11 @@ const component = {
         return {
             text: 123
         }
+    },
+    methods: {
+        handleChange () {
+            this.$emit('change')
+        }
     }
 }
 
@@ -26,8 +31,17 @@ const component = {
 
 new Vue({
     el: '#root',
-    components: {
-        compOne: component
+    data: {
+        num: 0
     },
-    template: '<comp-one :activ="true"></comp-one>'
+    components: {
+        componentOne: component
+    },
+    template: '<component-one :active="true" @change="changeMyself"></component-one>',
+    methods: {
+        changeMyself () {
+            this.num++
+            console.log(this.num)
+        }
+    }
 })
