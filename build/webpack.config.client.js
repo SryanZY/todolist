@@ -9,7 +9,9 @@ const merge = require('webpack-merge')
 
 let config
 const defaultPlugins = [
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+        template: path.join(__dirname, './template.html')
+    })
 ]
 const devServer = {
     port: 8000,
@@ -23,10 +25,10 @@ const devServer = {
     historyApiFallback: {
         index: '/public/index.html'
     },
-    proxy: {
+    /* proxy: {
         '/api': 'http://127.0.0.1:3333',
         '/user': 'http://127.0.0.1:3333'
-    },
+    }, */
     open: true,
     hot: true
 }
