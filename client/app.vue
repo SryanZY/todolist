@@ -2,6 +2,8 @@
   <div id="app">
     <div class="cover"></div>
     <Header></Header>
+    <p>{{ count }} {{ fullName }}</p>
+    <p>{{ textA }}</p>
     <router-link :to="{ name: 'app' }">app</router-link>
     <router-link to="/login">login</router-link>
     <transition name="fade">
@@ -15,6 +17,7 @@
 <script>
 import Header from './views/layout/header.vue'
 import Footer from './views/layout/footer.jsx'
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
     components: {
@@ -22,7 +25,29 @@ export default {
         Footer
     },
     mounted () {
-        console.log(this.$route)
+        let i = 1
+        setInterval(() => {
+            this.updateCount({
+                num: i++,
+                num2: 10
+            })
+        }, 2000)
+        this.updateText(123)
+        // this.updateCountAsync({
+        //     num: 5,
+        //     time: 2000
+        // })
+    },
+    computed: {
+        ...mapState({
+            count: state => state.count,
+            textA: state => state.a.text
+        }),
+        ...mapGetters(['fullName'])
+    },
+    methods: {
+        ...mapActions(['updateCountAsync']),
+        ...mapMutations(['updateCount', 'updateText'])
     }
 }
 </script>

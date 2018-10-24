@@ -29,7 +29,6 @@ export default [
             description: 'asdasd'
         },
         beforeEnter (to, from, next) {
-            console.log('enter')
             next()
         }
     },
